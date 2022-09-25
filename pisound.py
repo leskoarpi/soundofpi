@@ -5,7 +5,7 @@ import numpy as np
 p = pyaudio.PyAudio()
 
 volume = 0.8     # range [0.0, 1.0]
-fs = 12000      # sampling rate, Hz, must be integer
+fs = 7000      # sampling rate, Hz, must be integer
 duration = 0.4   # in seconds, may be float
 #f = 50       # sine frequency, Hz, may be float
 
@@ -14,7 +14,7 @@ with open('pi.txt') as fajl:
     for line in fajl:
         for szam in line:
     
-            print(szam)
+            #print(szam)
             # generate samples, note conversion to float32 array
             samples = (np.sin(2*np.pi*np.arange(fs*duration)*(hanglista[int(szam)]/2)/fs)).astype(np.float32).tobytes()
 
@@ -28,7 +28,7 @@ with open('pi.txt') as fajl:
             # play. May repeat with different volume values (if done interactively) 
             stream.write(samples)
 
-stream.stop_stream()
-stream.close()
+            stream.stop_stream()
+            stream.close()
 
 p.terminate()
